@@ -8,14 +8,12 @@
 
 // my solution:
 function removeSmallest(numbers) {
-  let smallestNum = Math.min(...numbers);
-  let smallestCounter = 0;
-  let finalArray;
-
   if (numbers.length === 0) {
     return numbers;
   }
 
+  let smallestNum = Math.min(...numbers);
+  let smallestCounter = 0;
 
   const firstArray = numbers.map(num => {
     if (num !== smallestNum) {
@@ -28,8 +26,8 @@ function removeSmallest(numbers) {
       return num;
     }
   })
-  
-  finalArray = firstArray.filter(num => num !== 'x');
+
+  const finalArray = firstArray.filter(num => num !== 'x');
 
   return finalArray;
 }
