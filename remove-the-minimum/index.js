@@ -21,13 +21,11 @@ function removeSmallest(numbers) {
   // increments smallestCounter by one so if we find another value matching the smallest value,
   // we won't hit 2nd else if statement and instead just return the number.
   const firstArray = numbers.map(num => {
-    if (num !== smallestNum) {
+    if (num !== smallestNum || smallestCounter > 0) {
       return num;
-    } else if (smallestCounter < 1 && num === smallestNum) {
+    } else {
       smallestCounter++;
       return num = 'x';
-    } else {
-      return num;
     }
   })
 
