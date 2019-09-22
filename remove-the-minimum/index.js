@@ -6,6 +6,40 @@
 // removeSmallest([5,3,2,1,4]) = [5,3,2,4]
 // removeSmallest([2,2,1,2,1]) = [2,2,2,1]
 
+// my solution:
 function removeSmallest(numbers) {
-  
+  let smallestNum = Math.min(...numbers);
+  let smallestCounter = 0;
+  let finalArray;
+
+  if (numbers.length === 0) {
+    return numbers;
+  }
+
+
+  const firstArray = numbers.map(num => {
+    if (num !== smallestNum) {
+      return num;
+    } else if (smallestCounter < 1 && num === smallestNum) {
+      smallestCounter++;
+      return num = 'x';
+    } else {
+      smallestCounter++;
+      return num;
+    }
+  })
+
+  if (smallestCounter === 1) {
+    finalArray = firstArray.filter(num => num !== 'x');
+  } else {
+    finalArray = firstArray.filter(num => num !== 'x');
+  }
+
+  return finalArray;
 }
+
+// efficient solution (codewars):
+// function removeSmallest(numbers) {
+//   const min = Math.min(...numbers);
+//   return numbers.filter((num, idx, arr) => idx !== arr.indexOf(min));
+// }
