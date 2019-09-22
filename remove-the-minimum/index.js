@@ -8,13 +8,18 @@
 
 // my solution:
 function removeSmallest(numbers) {
+  // returns back empty array if passed in empty array.
   if (numbers.length === 0) {
     return numbers;
   }
 
-  let smallestNum = Math.min(...numbers);
+  // sets the smallest value in array and create counter to tell where value that should be removed is.
+  const smallestNum = Math.min(...numbers);
   let smallestCounter = 0;
 
+  // create firstArray to hold the array value except with 1 value being 'x' (the value to remove)
+  // increments smallestCounter by one so if we find another value matching the smallest value,
+  // we won't hit 2nd else if statement and instead just return the number.
   const firstArray = numbers.map(num => {
     if (num !== smallestNum) {
       return num;
@@ -22,11 +27,11 @@ function removeSmallest(numbers) {
       smallestCounter++;
       return num = 'x';
     } else {
-      smallestCounter++;
       return num;
     }
   })
 
+  // finally, filter out whatever element is 'x' b/c thats element to remove
   const finalArray = firstArray.filter(num => num !== 'x');
 
   return finalArray;
