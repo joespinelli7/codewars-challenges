@@ -28,12 +28,8 @@ function removeSmallest(numbers) {
       return num;
     }
   })
-
-  if (smallestCounter === 1) {
-    finalArray = firstArray.filter(num => num !== 'x');
-  } else {
-    finalArray = firstArray.filter(num => num !== 'x');
-  }
+  
+  finalArray = firstArray.filter(num => num !== 'x');
 
   return finalArray;
 }
