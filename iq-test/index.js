@@ -6,6 +6,7 @@
 // iqTest("1 2 1 1") => 2 // Second number is even, while the rest of the numbers are odd
 ​
 function iqTest(numbers){
+  // Number is a wrapper object that converts a given argument into an integer value.
   const numArr = numbers.split(' ').map(Number);
   const evenArr = [];
   const negArr = [];
