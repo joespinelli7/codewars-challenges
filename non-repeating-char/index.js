@@ -9,6 +9,31 @@
 // firstNonRepeatingLetter('stress') => 't'
 // firstNonRepeatingLetter('sTreSS') => 'T'
 
-function firstNonRepeatingLetter {
-  
+// my solution:
+function firstNonRepeatingLetter(str) {
+  if (str.length === 0) {
+    return "";
+  }
+
+  const lowerStr = str.toLowerCase();
+  for (let char in lowerStr) {
+    if (lowerStr.lastIndexOf(lowerStr[char]) === parseInt(char) && lowerStr.indexOf(lowerStr[char]) === parseInt(char)) {
+      return str[char];
+    }
+  }
+
+  return "";
 }
+
+// solution I like using slice:
+// function firstNonRepeatingLetter(s) {
+//     var search = s.toLowerCase();
+//
+//     for (var i = 0; i < search.length; ++i) {
+//         var str = search.slice(0, i) + search.slice(i + 1);
+//         if((str.indexOf(search[i]) === -1)) {
+//             return s[i];
+//         }
+//     }
+//     return '';
+// }
