@@ -11,11 +11,8 @@
 
 // my solution:
 function firstNonRepeatingLetter(str) {
-  if (str.length === 0) {
-    return "";
-  }
-
   const lowerStr = str.toLowerCase();
+  
   for (let char in lowerStr) {
     if (lowerStr.lastIndexOf(lowerStr[char]) === parseInt(char) && lowerStr.indexOf(lowerStr[char]) === parseInt(char)) {
       return str[char];
