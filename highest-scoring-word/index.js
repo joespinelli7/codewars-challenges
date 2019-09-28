@@ -8,5 +8,21 @@
 // high('what time are we climbing up the volcano' => 'volcano'
 
 function high(str){
-
+  let result = "";
+  let max = 0;
+  let alphabet = "abcdefghijklmnopqrstuvwxyz"
+  let arr = str.split(" ");
+  arr.forEach((item,index)=>{
+    let i = 0;
+    let count = 0;
+    while(i < item.length){
+      count = count + alphabet.indexOf(item[i]);
+      i++;
+    }
+    if(count > max){
+      result = item;
+      max = count;
+    }
+  });
+  return result;
 }
