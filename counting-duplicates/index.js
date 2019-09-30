@@ -17,9 +17,7 @@ function duplicateCount(text){
   }
 
   for (let char in textObj) {
-    if (textObj[char] > 1) {
-      count++;
-    }
+    textObj[char] > 1 ? count++ : null;
   }
 
   return count;
