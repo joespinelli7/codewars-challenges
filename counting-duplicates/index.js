@@ -8,5 +8,19 @@
 // "aA11" -> 2 # 'a' and '1'
 
 function duplicateCount(text){
-  //...
+  let count = 0;
+  const textObj = {};
+
+
+  for (let char of text.toLowerCase()) {
+    !textObj[char] ? textObj[char] = 1 : textObj[char]++;
+  }
+
+  for (let char in textObj) {
+    if (textObj[char] > 1) {
+      count++;
+    }
+  }
+
+  return count;
 }
