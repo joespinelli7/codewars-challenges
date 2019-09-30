@@ -11,7 +11,6 @@ function duplicateCount(text){
   let count = 0;
   const textObj = {};
 
-
   for (let char of text.toLowerCase()) {
     !textObj[char] ? textObj[char] = 1 : textObj[char]++;
   }
