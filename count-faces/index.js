@@ -12,5 +12,24 @@
 // countSmileys([';]', ':[', ';*', ':$', ';-D']); should return 1;
 
 function countSmileys(arr) {
-  
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  let smileysCounter = 0;
+  const validEyes = [':', ';'];
+  const validNoses = ['-', '~']
+  const validMouths = [')', 'D'];
+
+  // b/c we know the order of the smiley will always be the same. Check if the eyes, nose, and mouth
+//   are valid inputs in the corresponding index they should be located in.
+  for (let smiley of arr) {
+    if (validEyes.includes(smiley[0]) && validNoses.includes(smiley[1]) && validMouths.includes(smiley[2])) {
+      smileysCounter++;
+    } else if (validEyes.includes(smiley[0]) && validMouths.includes(smiley[1])) {
+      smileysCounter++;
+    }
+  }
+
+  return smileysCounter;
 }
