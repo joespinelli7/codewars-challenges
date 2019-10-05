@@ -3,9 +3,9 @@
 // at least one element). The function returns the "best" sum ie the biggest possible sum of k distances less than
 // or equal to the given limit t, if that sum exists, or otherwise null.
 // Examples:
-// ts = [50, 55, 56, 57, 58] => 163
-// xs = [50] choose_best_sum(163, 3, xs) => null
-// ys = [91, 74, 73, 85, 73, 81, 87] => 228
+// ts = [50, 55, 56, 57, 58] chooseBestSum(163, 3, ts) => 163
+// xs = [50] chooseBestSum(163, 3, xs) => null
+// ys = [91, 74, 73, 85, 73, 81, 87] chooseBestSum(230, 3, ys) => 228
 
 function chooseBestSum(t, k, ls) {
   
