@@ -7,6 +7,34 @@
 // xs = [50] chooseBestSum(163, 3, xs) => null
 // ys = [91, 74, 73, 85, 73, 81, 87] chooseBestSum(230, 3, ys) => 228
 
-function chooseBestSum(t, k, ls) {
+// helper find all subarrays
+function subArrays(arr){
+  let kLengths = [];
+  if (arr.length === 1) return [arr];
+  else {
+  	subarr = subArrays(arr.slice(1));
+  	return subarr.concat(subarr.map(e => e.concat(arr[0])), [[arr[0]]]);
+  }
+}
 
+// subArrays([1,2,3,4,5])
+
+// helper to find all subarrays of length N within an array of arrays
+function filterByLength(arr, n) {
+  const result = arr.filter(a => a.length === n);
+  return result;
+}
+
+function chooseBestSum(maxDist, towns, arr) {
+    let subsets = filterByLength(subArrays(arr), towns);
+    let trip = [];
+    let myDist = 0;
+
+    for(let arr of subsets){
+      let sum = arr.reduce((a,b) => a+b);
+      if (sum <= maxDist && sum >= myDist) {
+        myDist = sum;
+      }
+    }
+  return myDist;
 }
