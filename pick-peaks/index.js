@@ -9,9 +9,13 @@
 // position and value of the beginning of the plateau.
 // Examples:
 // pickPeaks([1, 2, 2, 2, 1]) => {pos: [1], peaks: [2]}
-// pickPeaks([2,1,3,2,2,2,2,1]) => {pos:[2], peaks:[3]})
+// pickPeaks([2,1,3,2,2,2,2,1]) => {pos:[2], peaks:[3]}
 // pickPeaks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 3]) => {pos: [3, 7], peaks: [6, 3]}
 
 function pickPeaks(arr){
-  //  return {pos:[],peaks:[]}
+  const peaksObj = {pos: [], peaks: []};
+
+  
+
+  return peaksObj;
 }
