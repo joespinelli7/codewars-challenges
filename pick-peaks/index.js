@@ -14,8 +14,23 @@
 
 function pickPeaks(arr){
   const peaksObj = {pos: [], peaks: []};
+  const copyOfArr = [...arr];
+  const peakIndexes = [];
 
-  
+  for (let i = 0; i < copyOfArr.length; i++) {
+    if (copyOfArr[i] > copyOfArr[i - 1] && copyOfArr[i] > copyOfArr[i + 1] ) {
+      if (peakIndexes.length > 1) {
+        peaksObj.pos.push(Math.min(...peakIndexes));
+        peaksObj.peaks.push(copyOfArr[i]);
+      } else {
+        peaksObj.pos.push(i);
+        peaksObj.peaks.push(copyOfArr[i]);
+      }
+    } else if (copyOfArr[i] > copyOfArr[i - 1] && copyOfArr[i] === copyOfArr[i + 1]) {
+      peakIndexes.push(i)
+      copyOfArr[i] = copyOfArr[i - 1];
+    }
+  }
 
   return peaksObj;
 }
