@@ -13,7 +13,7 @@
 // pickPeaks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 3]) => {pos: [3, 7], peaks: [6, 3]}
 
 function pickPeaks(arr){
-  const peaksObj = {pos: [], peaks: []};
+  const peaksObj = {pos: [], peaks: []}; 
   const copyOfArr = [...arr];
   const peakIndexes = [];
 
