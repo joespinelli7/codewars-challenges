@@ -23,13 +23,15 @@ function removeNb (n) {
   const innerArr1 = [];
   const innerArr2 = [];
 
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= n; j++) {
+  for (let i = 1; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
       let additionArr = removeElements(array, i, j);
       const total = additionArr.reduce((total, num) => total += num);
-      if (i * j === total && i !== j) {
+      if (i * j === total) {
         innerArr1.push(i);
+        innerArr1.push(j);
         innerArr2.push(j);
+        innerArr2.push(i);
       }
     }
   }
