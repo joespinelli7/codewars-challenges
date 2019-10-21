@@ -16,6 +16,34 @@
 // or
 // removNb(26) should return "15 21, 21 15"
 
+// Solutions works. However, inefficient code, takes too long to run.
 function removeNb (n) {
-  
+  const outerArr = [];
+  const array = [...Array(n+1).keys()];
+  const innerArr1 = [];
+  const innerArr2 = [];
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      let additionArr = removeElements(array, i, j);
+      const total = additionArr.reduce((total, num) => total += num);
+      if (i * j === total && i !== j) {
+        innerArr1.push(i);
+        innerArr2.push(j);
+      }
+    }
+  }
+
+  if (innerArr1.length === 0) {
+    return outerArr;
+  } else {
+    return outerArr.concat([innerArr1], [innerArr2]);
+  }
+}
+
+function removeElements(array, i, j) {
+  let indexI = array.indexOf(i);
+  let indexJ = array.indexOf(j);
+  const returnArr = array.filter(num => num !== i && num !== j)
+  return returnArr;
 }
