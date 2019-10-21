@@ -16,7 +16,7 @@
 // or
 // removNb(26) should return "15 21, 21 15"
 
-// Solutions works. However, inefficient code, takes too long to run.
+// Solutions works. However, inefficient code, takes too long to execute.
 function removeNb (n) {
   const outerArr = [];
   const array = [...Array(n+1).keys()];
