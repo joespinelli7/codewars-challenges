@@ -7,5 +7,5 @@
 // flatten('a', ['b', 2], 3, null, [[4], ['c']]) => ['a', 'b', 2, 3, null, 4, 'c']
 
 function flatten(...args) {
-  
+  return [...args].flat(Infinity);
 }
