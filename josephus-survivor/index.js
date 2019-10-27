@@ -2,9 +2,9 @@
 // Basically you have to assume that n people are put into a circle and that they are eliminated in steps of k elements.
 // Notes and tips: using the solution to the other kata to check your function may be helpful, but as much larger
 // numbers will be used, using an array/list to compute the number of the survivor may be too slow; you may assume
-// that both n and k will always be >=1.
+// that both n and k will always be >= 1.
 // Example:
-// josephus_survivor(7,3) => means 7 people in a circle;
+// josephusSurvivor(7,3) => means 7 people in a circle;
 // one every 3 is eliminated until one remains
 // [1,2,3,4,5,6,7] - initial sequence
 // [1,2,4,5,6,7] => 3 is counted out
@@ -14,6 +14,20 @@
 // [1,4] => 5 is counted out
 // [4] => 1 counted out, 4 is the last element and solution - the survivor!
 
-function josephusSurvivor(n,k){
+function josephusSurvivor(n, k) {
+  const array = [...Array(n+1).keys()].slice(1);
+  let index = k - 1;
+  
+  while (array.length > 1) {
+    if (index < array.length) {
+      array.splice(index, 1);
+      index += k - 1;
+    } else {
+      let newIndex = index - array.length; // 0
+      array.splice(newIndex, 1);
+      index = array.length - newIndex;
+    }
+  }
 
+  return array[0];
 }
