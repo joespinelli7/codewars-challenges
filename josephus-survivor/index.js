@@ -17,7 +17,13 @@
 function josephusSurvivor(n, k) {
   const array = [...Array(n+1).keys()].slice(1);
   let index = k - 1;
-  
+
+  // removedIndex should always move to number in front of it.
+  // arr = [3, 5]
+  // k = 2
+  // array.length = 2
+  // index = 2
+  // removeIndex: 1
   while (array.length > 1) {
     if (index < array.length) {
       array.splice(index, 1);
