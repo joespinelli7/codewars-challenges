@@ -4,6 +4,14 @@
 // numericals("Hello, World!") => "1112111121311"
 // numericals("aaaaaaaaaaaa") => "123456789101112"
 
-function numericals(s){
-  
+function numericals(str){
+  const strObj = {};
+  let numStr = '';
+
+  for (let char of str) {
+    strObj[char] ? strObj[char]++ : strObj[char] = 1;
+    numStr = numStr + strObj[char];
+  }
+
+  return numStr;
 }
