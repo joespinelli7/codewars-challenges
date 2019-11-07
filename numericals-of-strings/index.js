@@ -4,7 +4,7 @@
 // numericals("Hello, World!") => "1112111121311"
 // numericals("aaaaaaaaaaaa") => "123456789101112"
 
-function numericals(str){
+function numericals(str) {
   const strObj = {};
   let numStr = '';
 
