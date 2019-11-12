@@ -10,17 +10,23 @@
 // The corresponding sums are (put together in a list): [20, 20, 19, 16, 10, 0]. The function partsSums will
 // take as parameter a list ls and return a list of the sums of its parts as defined above.
 
+// my solution:
 function partsSums(ls) {
-  const length = ls.length;
   const sumsArr = [];
-  let sum;
+  let total = ls.reduce((total, num) => total + num, 0);
 
-  for (let i = 0; i < length; i++) {
-    sum = ls.reduce((total, num) => total + num, 0);
-    sumsArr.push(sum);
-    ls.shift();
+  for (let i = 0; i < ls.length; i++) {
+    sumsArr.push(total);
+    total = total - ls[i];
   }
 
   sumsArr.push(0);
   return sumsArr;
 }
+
+// good solution:
+// function partsSums(ls) {
+//   ls.unshift(0);
+//   let sum = ls.reduce((p, c) => p + c, 0);
+//   return ls.map(v => sum = sum - v);
+// }
