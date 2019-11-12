@@ -7,10 +7,20 @@
 // ls = [6, 10]
 // ls = [10]
 // ls = []
-// The corresponding sums are (put together in a list): [20, 20, 19, 16, 10, 0]. The function parts_sums (or its
-// variants in other languages) will take as parameter a list ls and return a list of the sums of its parts as
-// defined above.
+// The corresponding sums are (put together in a list): [20, 20, 19, 16, 10, 0]. The function partsSums will
+// take as parameter a list ls and return a list of the sums of its parts as defined above.
 
 function partsSums(ls) {
+  const length = ls.length;
+  const sumsArr = [];
+  let sum;
 
+  for (let i = 0; i < length; i++) {
+    sum = ls.reduce((total, num) => total + num, 0);
+    sumsArr.push(sum);
+    ls.shift();
+  }
+
+  sumsArr.push(0);
+  return sumsArr;
 }
