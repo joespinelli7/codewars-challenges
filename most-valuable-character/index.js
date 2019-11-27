@@ -1,5 +1,5 @@
-// You will be given a string and your task is to return the most valuable character. The value of a character is
-// the difference between the index of its last occurrence and the index of its first occurrence. Return the
+// You will be given a string and your task is to return the most valuable character. The value of a character
+// is the difference between the index of its last occurrence and the index of its first occurrence. Return the
 // character that has the highest value. If there is a tie, return the lexicographically lowest character.
 // All inputs will be lower case.
 // Example:
