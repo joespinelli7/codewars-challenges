@@ -9,7 +9,7 @@
 
 function mvc(str) {
   let highestValue = 0;
-  let mostValChar = '';
+  let mostValChar = str[0];
 
   for (let char of str) {
     let difference = str.lastIndexOf(char) - str.indexOf(char)
