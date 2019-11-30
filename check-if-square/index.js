@@ -12,6 +12,7 @@
 
 function isSquare(n) {
   const num = Math.sqrt(n);
+  // Number.isInteger checks for whole numbers. (1.5 is false while 1 is true)
   if (Number.isInteger(num)) {
     return true
   }
