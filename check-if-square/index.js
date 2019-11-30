@@ -11,5 +11,10 @@
 // isSquare(26) =>  false
 
 function isSquare(n) {
+  const num = Math.sqrt(n);
+  if (Number.isInteger(num)) {
+    return true
+  }
 
+  return false;
 }
