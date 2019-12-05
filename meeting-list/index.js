@@ -8,18 +8,22 @@
 // It can happen that in two distinct families with the same family name two people have the same first name too.
 
 function meeting(str) {
+  // start by splitting str wherever signifies a new name: ; symbol
   const namesArr = str.toUpperCase().split(";");
-  let firstName = '';
-  let lastName = '';
-  const capNamesArr = [];
+  // create variables first and last name to switch the order of last name then first name
+  let firstName = "";
+  let lastName = "";
 
-  for (let name of namesArr) {
-    let switchOrderArr = name.split(':');
+  const formattedNames = namesArr.map(name => {
+    let switchOrderArr = name.split(":");
     firstName = switchOrderArr[0];
     lastName = switchOrderArr[1];
+    // here is the actual switching of the first and last name then returning it into an array of all correctly formatted names
+    return "("+ lastName + ", " + firstName + ")";
+  })
+  .sort()
+  .join("");
+  // finally sort array alphabetically and join them all together to return as a string.
 
-    capNamesArr.push("("+ lastName + ', ' + firstName + ")");
-  }
-
-  return capNamesArr.sort().join("");
+  return formattedNames;
 }
