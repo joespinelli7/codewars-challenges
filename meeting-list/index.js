@@ -8,5 +8,18 @@
 // It can happen that in two distinct families with the same family name two people have the same first name too.
 
 function meeting(str) {
+  const namesArr = str.toUpperCase().split(";");
+  let firstName = '';
+  let lastName = '';
+  const capNamesArr = [];
 
+  for (let name of namesArr) {
+    let switchOrderArr = name.split(':');
+    firstName = switchOrderArr[0];
+    lastName = switchOrderArr[1];
+
+    capNamesArr.push("("+ lastName + ', ' + firstName + ")");
+  }
+
+  return capNamesArr.sort().join("");
 }
