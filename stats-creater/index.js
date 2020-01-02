@@ -12,21 +12,26 @@
 // where hh, mm, ss are integers (represented by strings) with each 2 digits.
 
 function stat(str) {
+    // split the initial array into array of length that equals number of times passed in. Ex: ["01|15|59", "1|47|16", "01|17|20"]
     const timesArr = str.split(", ");
     const hours = [];
     const mins = [];
     const sec = [];
 
+    // call func rangeHandler to calculate range from given times
     console.log(rangeHandler(timesArr));
 }
 
 function rangeHandler(arr) {
-    const initialValues = arr[0].split("|")
-    let lowestTime = parseInt(initialValues[0] * 60 * 60) + parseInt(initialValues[1] * 60) + parseInt(initialValues[2]);
-    let highestTime = parseInt(initialValues[0] * 60 * 60) + parseInt(initialValues[1] * 60) + parseInt(initialValues[2]);
+    // splits first elememt pf array into hour, min, and sec of time to use as initial values of highest and lowest times
+    const initialValues = arr[0].split("|");
+    // converting total time into seconds so doing necessary calculations then adding them together
+    let lowestTime = parseInt(initialValues[0] * 3600) + parseInt(initialValues[1] * 60) + parseInt(initialValues[2]);
+    let highestTime = parseInt(initialValues[0] * 3600) + parseInt(initialValues[1] * 60) + parseInt(initialValues[2]);
 
-    for (let time of arr) {
-        let times = time.split("|");
+    // skip index 0 b/c it has already been made the initial highest and lowest time
+    for (let i = 1; i < arr.length; i++) {
+        let times = arr[i].split("|");
         let seconds = parseInt(times[0] * 60 * 60) + parseInt(times[1] * 60) + parseInt(times[2]);
 
         if (seconds > highestTime) {
@@ -36,21 +41,17 @@ function rangeHandler(arr) {
         }
     }
 
-    let totalSec = highestTime - lowestTime;
-    let hour = Math.floor(totalSec / 3600).toString();
-    let min = Math.floor((totalSec %= 3600) / 60).toString();
-    let sec = Math.floor(totalSec % 60).toString();
+    // solving range by subtracting highest time and lowest time
+    let rangeInSec = highestTime - lowestTime;
+    // calculations to find hour, min and sec of range time
+    let hour = Math.floor(rangeInSec / 3600).toString();
+    let min = Math.floor((rangeInSec %= 3600) / 60).toString();
+    let sec = Math.floor(rangeInSec % 60).toString();
 
-    if (hour.length === 1) {
-        hour = '0' + hour;
-    }
+    // checking if any of the time lengths are only 1 and if so adding a '0' in front to output correct format: hh|mm|ss
+    hour.length === 1 ? hour = '0' + hour : null;
+    min.length === 1 ? min = '0' + min : null;
+    sec.length === 1 ? sec = '0' + sec : null;
 
-    if (min.length === 1) {
-        min = '0' + min;
-    }
-
-    if (sec.length === 1) {
-        sec = '0' + sec;
-    }
     return 'Range: ' + hour + '|' + min + '|' + sec + ' ';
 }
