@@ -18,8 +18,31 @@ function stat(str) {
     const mins = [];
     const sec = [];
 
-    // call func rangeHandler to calculate range from given times
-    console.log(rangeHandler(timesArr));
+    // call func avaerageHandler to calculate average of given times
+    console.log();
+}
+
+function averageHandler(arr) {
+    // the number of different times given
+    const numOfTimes = arr.length;
+    // calculate the times (in seconds) and then get sum of all the times using reduce method
+    const timesInSec = arr.map(time => {
+        let arrOfHrMinSec = time.split("|");
+        return parseInt(arrOfHrMinSec[0] * 60 * 60) + parseInt(arrOfHrMinSec[1] * 60) + parseInt(arrOfHrMinSec[2]);;
+    })
+        .reduce((total, time) => total + time)
+
+    // calculate the average time in sec
+    let averageInSec = Math.floor(timesInSec / numOfTimes);
+    let hour = Math.floor(averageInSec / 3600).toString();
+    let min = Math.floor((averageInSec %= 3600) / 60).toString();
+    let sec = Math.floor(averageInSec % 60).toString();
+
+    hour.length === 1 ? hour = '0' + hour : null;
+    min.length === 1 ? min = '0' + min : null;
+    sec.length === 1 ? sec = '0' + sec : null;
+
+    return "Average: " + hour + "|" + min + "|" + sec + " ";
 }
 
 function rangeHandler(arr) {
@@ -31,8 +54,8 @@ function rangeHandler(arr) {
 
     // skip index 0 b/c it has already been made the initial highest and lowest time
     for (let i = 1; i < arr.length; i++) {
-        let times = arr[i].split("|");
-        let seconds = parseInt(times[0] * 60 * 60) + parseInt(times[1] * 60) + parseInt(times[2]);
+        let arrOfHrMinSec = arr[i].split("|");
+        let seconds = parseInt(arrOfHrMinSec[0] * 3600) + parseInt(arrOfHrMinSec[1] * 60) + parseInt(arrOfHrMinSec[2]);
 
         if (seconds > highestTime) {
             highestTime = seconds;
@@ -47,11 +70,4 @@ function rangeHandler(arr) {
     let hour = Math.floor(rangeInSec / 3600).toString();
     let min = Math.floor((rangeInSec %= 3600) / 60).toString();
     let sec = Math.floor(rangeInSec % 60).toString();
-
-    // checking if any of the time lengths are only 1 and if so adding a '0' in front to output correct format: hh|mm|ss
-    hour.length === 1 ? hour = '0' + hour : null;
-    min.length === 1 ? min = '0' + min : null;
-    sec.length === 1 ? sec = '0' + sec : null;
-
-    return 'Range: ' + hour + '|' + min + '|' + sec + ' ';
 }
