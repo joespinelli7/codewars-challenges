@@ -23,11 +23,7 @@ function averageHandler(arr) {
     // the number of different times given
     const numOfTimes = arr.length;
     // calculate the times (in seconds) and then get sum of all the times using reduce method
-    const timesInSec = arr.map(time => {
-        let arrOfHrMinSec = time.split("|");
-        return parseInt(arrOfHrMinSec[0] * 60 * 60) + parseInt(arrOfHrMinSec[1] * 60) + parseInt(arrOfHrMinSec[2]);;
-    })
-        .reduce((total, time) => total + time)
+    const timesInSec = arrayOfSeconds(arr).reduce((total, time) => total + time);
 
     // calculate the average time in sec
     let averageInSec = Math.floor(timesInSec / numOfTimes);
@@ -77,12 +73,10 @@ function rangeHandler(arr) {
 }
 
 function medianHandler(arr) {
+    // the number of different times given
     const numOfTimes = arr.length;
-    const timesInSec = arr.map(time => {
-        let arrOfHrMinSec = time.split("|");
-        return parseInt(arrOfHrMinSec[0] * 60 * 60) + parseInt(arrOfHrMinSec[1] * 60) + parseInt(arrOfHrMinSec[2]);;
-    })
-        .sort();
+    // calculate the times (in seconds) and then sort to make array have times sorted from lowest to highest
+    const timesInSec = arrayOfSeconds(arr).sort();
 
     if (numOfTimes % 2 != 0) {
         const desiredTimeIndex = Math.floor(numOfTimes / 2);
@@ -97,4 +91,12 @@ function medianHandler(arr) {
 
         return "Median: " + hour + "|" + min + "|" + sec;
     }
+}
+
+function arrayOfSeconds(arr) {
+    // returns an array with all times converted to seconds
+    return arr.map(time => {
+        let arrOfHrMinSec = time.split("|");
+        return parseInt(arrOfHrMinSec[0] * 3600) + parseInt(arrOfHrMinSec[1] * 60) + parseInt(arrOfHrMinSec[2]);;
+    });
 }
