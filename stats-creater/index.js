@@ -14,12 +14,9 @@
 function stat(str) {
     // split the initial array into array of length that equals number of times passed in. Ex: ["01|15|59", "1|47|16", "01|17|20"]
     const timesArr = str.split(", ");
-    const hours = [];
-    const mins = [];
-    const sec = [];
 
-    // call func avaerageHandler to calculate average of given times
-    console.log();
+    // call func's to output formatted statistics
+    console.log(rangeHandler(timesArr) + averageHandler(timesArr));
 }
 
 function averageHandler(arr) {
