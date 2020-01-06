@@ -35,9 +35,9 @@ function averageHandler(arr) {
     let min = Math.floor((averageInSec %= 3600) / 60).toString();
     let sec = Math.floor(averageInSec % 60).toString();
 
-    hour.length === 1 ? hour = '0' + hour : null;
-    min.length === 1 ? min = '0' + min : null;
-    sec.length === 1 ? sec = '0' + sec : null;
+    hour.length === 1 ? hour = "0" + hour : null;
+    min.length === 1 ? min = "0" + min : null;
+    sec.length === 1 ? sec = "0" + sec : null;
 
     return "Average: " + hour + "|" + min + "|" + sec + " ";
 }
@@ -67,4 +67,34 @@ function rangeHandler(arr) {
     let hour = Math.floor(rangeInSec / 3600).toString();
     let min = Math.floor((rangeInSec %= 3600) / 60).toString();
     let sec = Math.floor(rangeInSec % 60).toString();
+
+    // checking if any of the time lengths are only 1 and if so adding a '0' in front to output correct format: hh|mm|ss
+    hour.length === 1 ? hour = "0" + hour : null;
+    min.length === 1 ? min = "0" + min : null;
+    sec.length === 1 ? sec = "0" + sec : null;
+
+    return "Range: " + hour + "|" + min + "|" + sec + " ";
+}
+
+function medianHandler(arr) {
+    const numOfTimes = arr.length;
+    const timesInSec = arr.map(time => {
+        let arrOfHrMinSec = time.split("|");
+        return parseInt(arrOfHrMinSec[0] * 60 * 60) + parseInt(arrOfHrMinSec[1] * 60) + parseInt(arrOfHrMinSec[2]);;
+    })
+        .sort();
+
+    if (numOfTimes % 2 != 0) {
+        const desiredTimeIndex = Math.floor(numOfTimes / 2);
+
+        let hour = Math.floor(timesInSec[desiredTimeIndex] / 3600).toString();
+        let min = Math.floor((timesInSec[desiredTimeIndex] %= 3600) / 60).toString();
+        let sec = Math.floor(timesInSec[desiredTimeIndex] % 60).toString();
+
+        hour.length === 1 ? hour = "0" + hour : null;
+        min.length === 1 ? min = "0" + min : null;
+        sec.length === 1 ? sec = "0" + sec : null;
+
+        return "Median: " + hour + "|" + min + "|" + sec;
+    }
 }
