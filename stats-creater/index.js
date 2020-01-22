@@ -69,7 +69,11 @@ function rangeHandler(arr) {
     min.length === 1 ? min = "0" + min : null;
     sec.length === 1 ? sec = "0" + sec : null;
 
-    return "Range: " + hour + "|" + min + "|" + sec + " ";
+    if (numOfTimes === 2) {
+        return "Median: " + hour + "|" + min + "|" + sec;
+    } else {
+        return "Average: " + hour + "|" + min + "|" + sec + " ";
+    }
 }
 
 function medianHandler(arr) {
@@ -79,7 +83,7 @@ function medianHandler(arr) {
     const timesInSec = arrayOfSeconds(arr).sort();
 
     if (numOfTimes % 2 != 0) {
-        const desiredTimeIndex = Math.floor(numOfTimes / 2);
+        const desiredTimeIndex = Math.ceil(numOfTimes / 2);
 
         let hour = Math.floor(timesInSec[desiredTimeIndex] / 3600).toString();
         let min = Math.floor((timesInSec[desiredTimeIndex] %= 3600) / 60).toString();
@@ -99,4 +103,33 @@ function arrayOfSeconds(arr) {
         let arrOfHrMinSec = time.split("|");
         return parseInt(arrOfHrMinSec[0] * 3600) + parseInt(arrOfHrMinSec[1] * 60) + parseInt(arrOfHrMinSec[2]);;
     });
+}
+
+function medianHandler(arr) {
+    const numOfTimes = arr.length;
+    const timesInSec = arrayOfSeconds(arr).sort();
+
+    // if array length is odd, only have to pick out middle time and return that as the median
+    if (numOfTimes % 2 != 0) {
+        // floor here b/c we want the lower index
+        const desiredTimeIndex = Math.floor(numOfTimes / 2);
+
+        let hour = Math.floor(timesInSec[desiredTimeIndex] / 3600).toString();
+        let min = Math.floor((timesInSec[desiredTimeIndex] %= 3600) / 60).toString();
+        let sec = Math.floor(timesInSec[desiredTimeIndex] % 60).toString();
+
+        hour.length === 1 ? hour = "0" + hour : null;
+        min.length === 1 ? min = "0" + min : null;
+        sec.length === 1 ? sec = "0" + sec : null;
+
+        return "Median: " + hour + "|" + min + "|" + sec;
+    } else {
+        // else here in the case the array is of even length, have to taket the average of the two middle times to get the median
+        const firstTimeIndex = (numOfTimes / 2) - 1;
+        const secondTimeIndex = numOfTimes / 2;
+        const middleTimesArr = [arr.sort()[firstTimeIndex], arr.sort()[secondTimeIndex]]
+
+        // make use of the averageHandler to solve for the median in the case of even length array
+        return averageHandler(middleTimesArr);
+    }
 }
