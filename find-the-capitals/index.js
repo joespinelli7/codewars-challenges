@@ -8,15 +8,24 @@
 // mixed_capitals: [{"state" : 'Maine', capital: 'Augusta'}, {country: 'Spain', "capital" : "Madrid"}]
 // capital(mixed_capitals)[1] => "The capital of Spain is Madrid"
 
+// my solution:
 function capital(capitals){
   let sentenceArr = [];
-  if (capitals.length < 2) {
-    let place = Object.values(capitals[0])[0];
-    let capital = Object.values(capitals[0])[1];
-    sentenceArr.push(`The capital of ${place} is ${capital}`);
-  } else {
+  let place = "";
+  let capital = "";
 
+  for (let value of Object.values(capitals)) {
+    value.country ? place = value.country : place = value.state;
+    capital = value.capital;
+    sentenceArr.push(`The capital of ${place} is ${capital}`);
   }
 
-  return sentence;
+  return sentenceArr;
 }
+
+// improved solution:
+// function capital(capitals) {
+//   return capitals.map(function(e) {
+//     return 'The capital of ' + (e.state || e.country) + ' is ' + e.capital
+//   })
+// }
