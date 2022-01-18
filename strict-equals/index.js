@@ -5,7 +5,7 @@
 // -0 === 0 and 0 === -0 are always true
 
 function strictEquals(a, b) {
-  if (typeof(a) !== typeof(b)) {
+  if (!Object.is(typeof(a), typeof(b))) {
     return false;
   }
 
@@ -14,7 +14,7 @@ function strictEquals(a, b) {
   }
 
   if ((a + '').includes(0) && (b + '').includes(0)) {
-    if ((Math.abs(a) + '').length === 1 && (Math.abs(b) + '').length === 1) {
+    if ((Math.abs(a) + '').length < 2 && (Math.abs(b) + '').length < 2) {
       return true;
     }
   }
@@ -33,6 +33,7 @@ function strictEquals(a, b) {
 // runTest(-0, -00)
 // runTest(-0, '-0')
 // runTest(505, -0)
+// runTest('505', -0)
 // runTest(-0, null)
 // runTest(-0, false)
 // runTest([], [])
